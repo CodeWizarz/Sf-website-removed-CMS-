@@ -28,10 +28,16 @@ export function ContactForm({ data }) {
     shallow
   )
 
+  const closeContactTab = () => {
+    setContactIsOpen(false)
+    router.push('/', '/', { shallow: true })
+    if (showThanks) setShowThanks(false)
+  }
+
   useLayoutEffect(() => {
     const escFunction = (event) => {
       if (event.keyCode === 27) {
-        setContactIsOpen(false)
+        closeContactTab()
       }
     }
 
@@ -42,12 +48,6 @@ export function ContactForm({ data }) {
   useLayoutEffect(() => {
     setContactIsOpen(contact)
   }, [contact])
-
-  const closeContactTab = () => {
-    setContactIsOpen(false)
-    router.push('/', '/', { shallow: true })
-    if (showThanks) setShowThanks(false)
-  }
 
   return (
     <div className={cn(s.container, contactIsOpen && s.open)}>
