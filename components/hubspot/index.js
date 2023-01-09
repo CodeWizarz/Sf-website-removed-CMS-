@@ -23,7 +23,9 @@ const removeHTMLFromStrings = (data) => {
     }
   }
 
-  data.fields.forEach((item) => (item.value = actionForEachType(item.value)))
+  data.fields.forEach((item) => {
+    item.value = actionForEachType(item.value)
+  })
 }
 
 export const Hubspot = ({ form, children }) => {
@@ -57,10 +59,12 @@ export const Hubspot = ({ form, children }) => {
     }, {})
 
     const data = {
-      fields: formFields.map((item) => ({
-        name: item,
-        value: input[item] || '',
-      })),
+      fields: formFields.map((item) => {
+        return {
+          name: item,
+          value: input[item] || '',
+        }
+      }),
       context: {
         hutk: hsCookie?.hubspotutk,
         pageUri: `${window.location.href}`,

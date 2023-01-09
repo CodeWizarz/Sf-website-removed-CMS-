@@ -111,7 +111,7 @@ const MultipleCheckboxField = forwardRef(
     return (
       <div className={s['multiple-checkboxes']} ref={ref}>
         <label
-          htmlFor={slugify(name)}
+          htmlFor={name}
           className={cn('p-xs text-muted text-uppercase', s.label)}
         >
           {label} {required && '*'}
@@ -126,8 +126,8 @@ const MultipleCheckboxField = forwardRef(
               id={option}
               type="checkbox"
               value={option}
-              name={label}
-              {...register(label.toLowerCase())}
+              name={name}
+              {...register(name.toLowerCase())}
             />
             <span>{option}</span>
           </label>
@@ -139,7 +139,15 @@ const MultipleCheckboxField = forwardRef(
 
 const SelectField = forwardRef(
   (
-    { name = '', label = '', options, placeholder = '', required = false },
+    {
+      name = '',
+      label = '',
+      options,
+      placeholder = '',
+      required = false,
+      onChange = () => {},
+      onBlur = () => {},
+    },
     ref
   ) => {
     return (
@@ -155,9 +163,13 @@ const SelectField = forwardRef(
           className={s.select}
           name={name}
           required={required}
+          onValueChange={(e) => {
+            onChange(e)
+            onBlur(e)
+          }}
         >
           {options.map((option, i) => (
-            <SelectItem key={i} value={slugify(option)}>
+            <SelectItem key={i} value={option}>
               {option}
             </SelectItem>
           ))}
