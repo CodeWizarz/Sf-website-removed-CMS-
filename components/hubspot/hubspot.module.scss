@@ -8,3 +8,9 @@
     height: desktop-vw(48px);
   }
 }
+
+.form {
+  &:not(.visible) {
+    display: none;
+  }
+}

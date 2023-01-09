@@ -1,6 +1,8 @@
 import { Button } from 'components/button'
+import { useStore } from 'lib/store'
 import { Fragment, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import shallow from 'zustand/shallow'
 import {
   InputField,
   MultipleCheckboxField,
@@ -29,13 +31,14 @@ const removeHTMLFromStrings = (data) => {
 }
 
 export const Hubspot = ({ form, children }) => {
+  const [setShowThanks] = useStore((state) => [state.setShowThanks], shallow)
+
   const { register, control, reset, handleSubmit, formState } = useForm({
     mode: 'onChange',
   })
 
   const { errors, isSubmitting, isValid } = formState
   const [IP, setIP] = useState('')
-  const [thanks, setThanks] = useState(false)
   const url = `https://api.hsforms.com/submissions/v3/integration/submit/${form.portalId}/${form.id}`
   const formFields = form.inputs.map((field) => field.name)
 
@@ -87,19 +90,16 @@ export const Hubspot = ({ form, children }) => {
         if (response?.status === 'error') return
 
         if (form?.actions?.redirect && !!form.actions.redirectValue) {
-          setThanks('Thanks for your submission!')
+          setShowThanks(true)
           setTimeout(() => {
             window.open(form.actions.redirectValue, '_self')
           }, 1000)
         } else {
-          setThanks(
-            form.actions.redirectValue.replace('<p>', '').replace('</p>', '')
-          )
+          setShowThanks(true)
         }
 
         setTimeout(() => {
           reset()
-          setThanks(false)
         }, 1500)
       })
       .then(() => {})
@@ -129,7 +129,6 @@ export const Hubspot = ({ form, children }) => {
     form: {
       id: form.id,
       fields: form.inputs,
-      message: thanks,
 
       submitButton: form.submitButton,
     },
