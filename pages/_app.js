@@ -79,13 +79,13 @@ function MyApp({ Component, pageProps }) {
         strategy="worker"
         type="text/javascript"
         id="hs-forms-loader"
-        src="//js.hsforms.net/forms/embed/v2.js"
+        src="https://js.hsforms.net/forms/embed/v2.js"
       />
       <Script
         strategy="worker"
         type="text/javascript"
         id="hs-script-loader"
-        src="//js.hs-scripts.com/4828818.js"
+        src="https://js.hs-scripts.com/4828818.js"
       />
       {/* <!-- End Hubspot script loader --> */}
 
