@@ -1,7 +1,12 @@
 import { NextSeo } from 'next-seo'
 import NextHead from 'next/head'
 
-export function CustomHead({ title = '', description, keywords }) {
+export function CustomHead({
+  title = '',
+  image = { url: 'https://studiofreight.com/og.jpg' },
+  description,
+  keywords,
+}) {
   return (
     <>
       <NextHead>
@@ -59,10 +64,6 @@ export function CustomHead({ title = '', description, keywords }) {
         <meta name="msapplication-TileColor" content="#00FF6A" />
         <meta name="theme-color" content="#00FF6A" />
         <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="twitter:image:src"
-          content="https://studiofreight.com/sf-og.jpg"
-        />
 
         {/* END FAVICON */}
 
@@ -78,7 +79,7 @@ export function CustomHead({ title = '', description, keywords }) {
           locale: 'en_US',
           images: [
             {
-              url: 'https://studiofreight.com/sf-og.jpg',
+              url: image.url,
               width: 1200,
               height: 630,
               alt: title,

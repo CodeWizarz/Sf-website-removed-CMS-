@@ -21,7 +21,7 @@ export function Layout({
     title: 'Studio Freight - Built on Principle',
     description:
       'Studio Freight is an independent creative studio built on principle.',
-    image: { url: 'https://studiofreight.com/og.jpg' },
+    image: { url: 'https://studiofreight.com/sf-og.jpg' },
     keywords: [
       'freight',
       'studio',
