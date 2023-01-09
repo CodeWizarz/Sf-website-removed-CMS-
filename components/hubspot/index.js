@@ -1,5 +1,4 @@
 import { Button } from 'components/button'
-import { useRouter } from 'next/router'
 import { Fragment, useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import {
@@ -19,7 +18,7 @@ const removeHTMLFromStrings = (data) => {
       case 'object':
         return item.map((elm) => elm.replace(/(<([^>]+)>)/gi, '')).join(';')
       default:
-        console.log('Not seccure parsing for this type:', typeof item)
+        console.log('Not secure parsing for this type:', typeof item)
         return item
     }
   }
@@ -27,17 +26,16 @@ const removeHTMLFromStrings = (data) => {
   data.fields.forEach((item) => (item.value = actionForEachType(item.value)))
 }
 
-export const Hubspot = ({ children, form }) => {
+export const Hubspot = ({ form, children }) => {
   const { register, control, reset, handleSubmit, formState } = useForm({
     mode: 'onChange',
   })
+
   const { errors, isSubmitting, isValid } = formState
   const [IP, setIP] = useState('')
   const [thanks, setThanks] = useState(false)
-  const router = useRouter()
   const url = `https://api.hsforms.com/submissions/v3/integration/submit/${form.portalId}/${form.id}`
   const formFields = form.inputs.map((field) => field.name)
-  const { gclid } = router.query
 
   async function fetchIP() {
     const res = await fetch('https://ip.nf/me.json')
@@ -58,21 +56,13 @@ export const Hubspot = ({ children, form }) => {
       return cookies
     }, {})
 
-    if (!!gclid) {
-      formFields['gclid'] = `${gclid}`
-    }
-
-    if (!!hsCookie._ga) {
-      formFields['ga'] = `${hsCookie.gclid}`
-    }
-
     const data = {
       fields: formFields.map((item) => ({
         name: item,
         value: input[item] || '',
       })),
       context: {
-        hutk: hsCookie.hubspotutk,
+        hutk: hsCookie?.hubspotutk,
         pageUri: `${window.location.href}`,
         pageName: `${window.location.pathname}`,
         ipAddress: `${IP}`,
@@ -136,6 +126,7 @@ export const Hubspot = ({ children, form }) => {
       id: form.id,
       fields: form.inputs,
       message: thanks,
+
       submitButton: form.submitButton,
     },
     legalConsent: form.legalConsent,
@@ -144,7 +135,7 @@ export const Hubspot = ({ children, form }) => {
   return children(helpers)
 }
 
-const fieldTypeSwitcher = (field, input, handlers) => {
+const FieldTypeSwitcher = ({ field, input, handlers }) => {
   const { errors, InputField, SelectField, register } = handlers
 
   switch (input.hubspotType) {
@@ -189,6 +180,7 @@ const fieldTypeSwitcher = (field, input, handlers) => {
           required={input.required}
           options={input.options}
           register={register}
+          {...field}
         />
       )
     case 'multi_line_text':
@@ -225,7 +217,11 @@ const Form = ({ handlers, form, className, children, style }) => {
           if (input.type.includes('multiple')) {
             return (
               <Fragment key={`form-input-${key}`}>
-                {fieldTypeSwitcher({}, input, handlers)}
+                <FieldTypeSwitcher
+                  field={{}}
+                  input={input}
+                  handlers={handlers}
+                />
               </Fragment>
             )
           }
@@ -235,11 +231,17 @@ const Form = ({ handlers, form, className, children, style }) => {
               name={input.name}
               control={handlers.control}
               rules={{ required: input.required }}
-              render={({ field }) => fieldTypeSwitcher(field, input, handlers)}
+              render={({ field }) => (
+                <FieldTypeSwitcher
+                  field={field}
+                  input={input}
+                  handlers={handlers}
+                />
+              )}
             />
           )
         })}
-      <Button type="submit" disabled={!!form.message} className={s.button}>
+      <Button type="submit" className={s.button}>
         {form.submitButton.text}
       </Button>
       {children}

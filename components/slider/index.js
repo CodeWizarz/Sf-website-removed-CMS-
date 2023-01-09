@@ -18,8 +18,6 @@ export default function Slider({
     },
   })
 
-  console.log(enableAutoplay)
-
   return (
     <div className={cn(className, 'blaze-slider')} ref={elRef}>
       <div className="blaze-container">

@@ -1,7 +1,7 @@
 import NextLink from 'next/link'
 import { forwardRef, useMemo } from 'react'
 
-const SHALLOW_URLS = ['?demo=true']
+const SHALLOW_URLS = ['?contact=true']
 
 export const Link = forwardRef(
   ({ href, children, className, scroll, shallow, ...props }, ref) => {

@@ -160,6 +160,12 @@
   }
 
   .checkbox {
+    input {
+      position: absolute;
+      opacity: 0;
+      left: -9999px;
+    }
+
     &:not(:last-child) {
       margin-right: mobile-vw(8px);
       margin-bottom: mobile-vw(8px);
