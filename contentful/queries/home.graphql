@@ -78,7 +78,6 @@ query projectListEntryQuery($preview: Boolean!) {
         services
         stack
         link
-        publishedDate
       }
     }
   }
