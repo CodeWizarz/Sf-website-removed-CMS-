@@ -12,7 +12,7 @@
   .image {
     grid-column: span 1;
     height: mobile-vw(238px);
-    width: 100%;
+    width: auto;
     aspect-ratio: var(--width) / var(--height);
     border-radius: mobile-vw(8px);
 
