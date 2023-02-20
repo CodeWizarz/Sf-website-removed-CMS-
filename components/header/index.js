@@ -54,7 +54,7 @@ export const Header = ({ title, principles = [], contact }) => {
           <Link
             name="easter egg - pale blue dot"
             className={s.egg}
-            href="https://youtube.com/watch?v=go5fwsblpt8"
+            href="https://youtu.be/GO5FwsblpT8"
           >
             <StarDuotone />
           </Link>
