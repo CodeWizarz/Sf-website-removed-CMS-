@@ -1,4 +1,4 @@
-import { useFrame, useLayoutEffect } from '@studio-freight/hamo'
+import { useFrame } from '@studio-freight/hamo'
 import Lenis from '@studio-freight/lenis'
 import cn from 'clsx'
 import { useEffect, useRef, useState } from 'react'
@@ -32,7 +32,7 @@ export function ScrollableBox({ children, className, infinite, reset }) {
     lenis?.raf(time)
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (reset) {
       lenis?.scrollTo(0, { immediate: true })
     }

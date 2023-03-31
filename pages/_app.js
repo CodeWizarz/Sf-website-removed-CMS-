@@ -1,4 +1,4 @@
-import { useDebug, useLayoutEffect } from '@studio-freight/hamo'
+import { useDebug } from '@studio-freight/hamo'
 import 'blaze-slider/dist/blaze.css'
 import { RealViewport } from 'components/real-viewport'
 import { GTM_ID } from 'lib/analytics'
@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
     }
   }, [lenis, overflow])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.history.scrollRestoration = 'manual'
   }, [])
 

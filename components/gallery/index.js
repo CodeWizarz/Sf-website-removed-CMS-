@@ -1,9 +1,9 @@
-import { useLayoutEffect, useOutsideClickEvent } from '@studio-freight/hamo'
+import { useOutsideClickEvent } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { ComposableImage } from 'components/composable-image'
 import { ScrollableBox } from 'components/scrollable-box'
 import { useStore } from 'lib/store'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import shallow from 'zustand/shallow'
 import s from './gallery.module.scss'
 
@@ -20,7 +20,7 @@ export function Gallery() {
 
   useOutsideClickEvent(contentRef, () => setGalleryVisible(false))
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const escFunction = (event) => {
       if (event.keyCode === 27) {
         setGalleryVisible(false)

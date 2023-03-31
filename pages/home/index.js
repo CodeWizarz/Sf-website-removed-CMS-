@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMediaQuery } from '@studio-freight/hamo'
+import { useMediaQuery } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { ComposableImage } from 'components/composable-image'
 import { ClientOnly } from 'components/isomorphic'
@@ -47,7 +47,7 @@ export default function Home({ studioFreight, footer, contact, projects }) {
     setSelectedProject(projects.items[0])
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (selectedProject) {
       setResetScroll(true)
       setTimeout(() => {

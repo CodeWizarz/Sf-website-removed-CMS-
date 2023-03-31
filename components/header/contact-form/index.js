@@ -1,5 +1,4 @@
 import * as Accordion from '@radix-ui/react-accordion'
-import { useLayoutEffect } from '@studio-freight/hamo'
 import cn from 'clsx'
 import { Button } from 'components/button'
 import { Hubspot } from 'components/hubspot'
@@ -10,7 +9,7 @@ import { renderer as globalRenderer } from 'contentful/renderer'
 import { slugify } from 'lib/slugify'
 import { useStore } from 'lib/store'
 import { useRouter } from 'next/router'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import shallow from 'zustand/shallow'
 import s from './contact-form.module.scss'
 
@@ -34,7 +33,7 @@ export function ContactForm({ data }) {
     if (showThanks) setShowThanks(false)
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const escFunction = (event) => {
       if (event.keyCode === 27) {
         closeContactTab()
@@ -45,7 +44,7 @@ export function ContactForm({ data }) {
     return () => document.removeEventListener('keydown', escFunction, false)
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setContactIsOpen(contact)
   }, [contact])
 
