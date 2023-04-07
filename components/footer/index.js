@@ -1,8 +1,7 @@
 import { useMediaQuery } from '@studio-freight/hamo'
 import cn from 'clsx'
-import { Image } from 'components/image'
-import { Link } from 'components/link'
 import { Separator } from 'components/separator'
+import Link from 'next/link'
 import s from './footer.module.scss'
 
 export function Footer({ className, style, links, studioInfo }) {
@@ -13,9 +12,26 @@ export function Footer({ className, style, links, studioInfo }) {
       <Separator className="layout-block" />
       <div className={cn(s.footer, 'layout-grid', className)} style={style}>
         <p className={cn(s.column, 'p-s text-muted')}>Built on Principle</p>
-        {isMobile === false && (
-          <>
-            <ul className={s.column}>
+        {/* <Separator className="layout-block" /> */}
+        {/* <div className={cn(s.footer, 'layout-grid', className)} style={style}> */}
+        <Link legacyBehavior href="/">
+          <a className={cn(s.column, 'p-s text-muted')}>Github</a>
+        </Link>
+        <Link legacyBehavior href="/">
+          <a className={cn(s.column, 'p-s text-muted')}>Twitter</a>
+        </Link>
+        <Link legacyBehavior href="/">
+          <a className={cn(s.column, 'p-s text-muted')}>medium</a>
+        </Link>
+        <Link legacyBehavior href="/">
+          <a className={cn(s.column, 'p-s text-muted')}>discord</a>
+        </Link>
+
+        {/* </div> */}
+        {/* <Separator className="layout-block" /> */}
+        {/* {isMobile === false && ( */}
+        {/* <> */}
+        {/* <ul className={s.column}>
               {links.slice(0, 2).map((link, i) => (
                 <li key={i}>
                   <Link className="p-s decorate" href={link.url}>
@@ -23,8 +39,8 @@ export function Footer({ className, style, links, studioInfo }) {
                   </Link>
                 </li>
               ))}
-            </ul>
-            <ul className={s.column}>
+            </ul> */}
+        {/* <ul className={s.column}>
               {links.slice(2, 4).map((link, i) => (
                 <li key={i}>
                   <Link className="p-s decorate" href={link.url}>
@@ -32,8 +48,8 @@ export function Footer({ className, style, links, studioInfo }) {
                   </Link>
                 </li>
               ))}
-            </ul>
-            <ul className={s.column}>
+            </ul> */}
+        {/* <ul className={s.column}>
               {links.slice(4, 6).map((link, i) => (
                 <li key={i}>
                   <Link className="p-s decorate" href={link.url}>
@@ -41,13 +57,12 @@ export function Footer({ className, style, links, studioInfo }) {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </>
-        )}
-
+            </ul> */}
+        {/* </> */}
+        {/* )}  */}
         {isMobile === true && (
           <>
-            <ul className={s.column}>
+            {/* <ul className={s.column}>
               <li className="p-s text-muted">
                 &copy; {new Date().getFullYear()}
               </li>
@@ -69,11 +84,10 @@ export function Footer({ className, style, links, studioInfo }) {
                   </Link>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </>
         )}
-
-        <ul className={s.column}>
+        {/* <ul className={s.column}>
           <li>
             <Link className="p-s decorate" href={`tel:${studioInfo.phone}`}>
               P: {studioInfo.phone}
@@ -84,18 +98,17 @@ export function Footer({ className, style, links, studioInfo }) {
               E: {studioInfo.email}
             </Link>
           </li>
-        </ul>
-
-        {isMobile === false && (
+        </ul> */}
+        {/* {isMobile === false && (
           <ul className={s.column}>
             <li className="p-s text-muted">
               &copy; {new Date().getFullYear()}
             </li>
           </ul>
-        )}
+        )} */}
       </div>
 
-      {isMobile === true && (
+      {/* {isMobile === true && (
         <section className={s['footer-image']}>
           <Image
             src={'/mobile-temp-images/hamo-banner.png'}
@@ -104,7 +117,7 @@ export function Footer({ className, style, links, studioInfo }) {
             className={s.image}
           />
         </section>
-      )}
+      )} */}
     </footer>
   )
 }

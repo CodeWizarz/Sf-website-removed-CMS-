@@ -33,7 +33,7 @@ export function CustomHead({
           name="keywords"
           content={keywords && keywords.length ? keywords.join(',') : keywords}
         />
-        <meta name="author" content="Studio Freight" />
+        <meta name="author" content="Decentralance" />
         <meta name="referrer" content="no-referrer" />
         <meta name="format-detection" content="telephone=no" />
         <meta httpEquiv="x-dns-prefetch-control" content="off" />

@@ -18,7 +18,7 @@ const Footer = dynamic(
 
 export function Layout({
   seo = {
-    title: 'Studio Freight - Built on Principle',
+    title: 'Decentralance - Built on WEB3',
     description:
       'Studio Freight is an independent creative studio built on principle.',
     image: { url: 'https://studiofreight.com/sf-og.jpg' },

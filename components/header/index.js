@@ -16,7 +16,7 @@ const Stard = dynamic(() => import('icons/stard.svg'), { ssr: false })
 const Monogram = dynamic(() => import('icons/sf-monogram.svg'), { ssr: false })
 const StarDuotone = dynamic(() => import('icons/star-duotone.svg'), {
   ssr: false,
-})
+}) //ss
 
 export const Header = ({ title, principles = [], contact }) => {
   const isMobile = useMediaQuery('(max-width: 800px)')
@@ -30,20 +30,20 @@ export const Header = ({ title, principles = [], contact }) => {
     <header className={cn(s.container, 'layout-block')}>
       <div className={cn(s.top, 'layout-grid')}>
         <div className={s.eggs}>
-          <Link
+          {/* <Link
             name="easter egg"
             className={s.egg}
             href="https://github.com/studio-freight/sf-website"
           >
             <Stard />
-          </Link>
-          <Link
+          </Link> */}
+          {/* <Link
             name="easter egg - soundboard"
             className={s.egg}
             href="https://soundboard.studiofreight.com"
           >
             <Monogram />
-          </Link>
+          </Link> */}
           <Link
             name="darkroom website"
             className={s.egg}

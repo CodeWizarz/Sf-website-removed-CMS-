@@ -1,12 +1,8 @@
-import * as Accordion from '@radix-ui/react-accordion'
 import cn from 'clsx'
 import { Button } from 'components/button'
-import { Hubspot } from 'components/hubspot'
 import { ScrollableBox } from 'components/scrollable-box'
 import { Separator } from 'components/separator'
-import { renderer } from 'contentful/faq-renderer'
 import { renderer as globalRenderer } from 'contentful/renderer'
-import { slugify } from 'lib/slugify'
 import { useStore } from 'lib/store'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
@@ -66,15 +62,15 @@ export function ContactForm({ data }) {
           </ScrollableBox>
         ) : (
           <ScrollableBox className={s.scrollable} shadow={false}>
-            <div className={s.content}>{globalRenderer(data.description)}</div>
-            <Hubspot {...data.form} className={s.form}>
+            {/* <div className={s.content}>{globalRenderer(data.description)}</div> */}
+            {/* <Hubspot {...data.form} className={s.form}>
               {({ ...helpers }) => (
                 <Hubspot.Form className={s.form} {...helpers} />
               )}
-            </Hubspot>
+            </Hubspot> */}
             <div className={s.accordion}>
               <p className="p text-uppercase text-bold text-muted">FAQ</p>
-              <Accordion.Root
+              {/* <Accordion.Root
                 type="single"
                 className={s['accordion-root']}
                 collapsible
@@ -118,7 +114,7 @@ export function ContactForm({ data }) {
                     </Accordion.Content>
                   </Accordion.Item>
                 ))}
-              </Accordion.Root>
+              </Accordion.Root> */}
             </div>
           </ScrollableBox>
         )}
